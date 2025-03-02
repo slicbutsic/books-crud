@@ -1,0 +1,42 @@
+<%= link_to 'Home', root_path, class:'border rounded-md bg-blue-300 py-1 px-3' %>
+<div class='text-lg font-bold'>
+  <%= @book.title %>
+
+  <div class="flex mt-2">
+    <% if @book.user.email == current_user.email %>
+      <%= link_to edit_book_path(@book) do %>
+        <%= render 'edit-button' %>
+      <% end %>
+      <%= button_to @book, method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
+        <%= render 'delete-button' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<p class="text-sm text-gray-800 mt-3">
+  <%= @book.body %>
+</p>
+
+<%# post user %>
+<p class="text-sm text-gray-800 mt-3">
+  posted by: <%= @book.user.email %>
+</p>
+
+<%# likes %>
+<p>
+  <% if current_user.likes.exists?(book: @book) %>
+    <% like = current_user.likes.find_by(book: @book) %>
+    <%= button_to book_like_path(@book, like), method: :delete, class:'cursor-pointer' do %>
+    <%= render 'liked-button' %>
+  <% end %>
+  <% else %>
+  <%= button_to book_likes_path(@book), method: :post, class:'cursor-pointer' do %>
+    <%= render 'like-button' %>
+  <% end %>
+  <% end %>
+  <%= pluralize(@book.likes.count, 'like') %>
+</p>
+
+<%# reviews %>
+<%= render 'comments/index' %>

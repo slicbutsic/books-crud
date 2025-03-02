@@ -1,0 +1,25 @@
+<% if @comments.count > 0 %>
+  <h1 class="mt-3">Reviews:</h1>
+<% end %>
+
+<div class="text-sm text-gray-600">
+  <% @comments.each do |comment| %>
+    <p><%= comment.user.email %>:</p>
+    <div class="flex">
+      <p class='mr-3'><%= comment.reviews %></p>
+      <% if comment.user.email == current_user.email  %>
+        <%= link_to edit_book_comment_path(comment.book, comment)  do %>
+          <%= render 'edit-button' %>
+        <% end %>
+        <%= button_to book_comment_path(comment.book, comment), method: :delete do %>
+          <%= render 'delete-button' %>
+        <% end %>
+      <% end %>
+    </div>
+
+  <% end %>
+</div>
+
+<div>
+  <%= render 'comments/form', book: @book, comment: @comment %>
+</div>

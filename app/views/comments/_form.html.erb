@@ -1,0 +1,22 @@
+<%= form_with(model: [ @book, @comment ], local: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation" class="bg-red-500 text-white p-4 rounded mb-4">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4 mt-3">
+    Add a review:
+    <%#= form.label :reviews, class: 'block text-lg font-semibold mb-2' %>
+    <%= form.text_area :reviews, required: true, class: 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.submit 'Add Review', class: 'bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500' %>
+  </div>
+<% end %>

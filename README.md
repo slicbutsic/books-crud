@@ -1,24 +1,17 @@
-# README
+# Books Basic CRUD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple CRUD app that includes features like comments and likes.
 
-Things you may want to cover:
+## Features
+- Create, Read, Update, Delete books
+- Add and manage comments on books
+- Like books
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+### Clone the repository
+To clone this project, run the following command:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+git clone https://github.com/slicbutsic/books-crud.git
+```
